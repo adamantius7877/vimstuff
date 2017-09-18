@@ -101,6 +101,8 @@ map <leader>es :e $MYVIMRC<CR>
 map <leader>cmd :e C:\Users\c.henderson1\Documents\BatchFiles\env.cmd<CR>
 " Edit ctags file
 map <leader>ctag :e C:\Users\c.henderson1\ctags.cnf<CR>
+nnoremap <F6> :AsyncRun -program=make<CR>
+
 
 " Set Fold Methods
 map <leader>zi :set foldmethod=indent<CR>
@@ -135,7 +137,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:used_javascript_libs='jquery, angularjs'
+let g:used_javascript_libs='jquery, angularjs, angular4'
 
 map <leader>ts :let NERDTreeIgnore = ['\.js']<CR>r
 map <leader>nf :let NERDTreeIgnore = ['']<CR>r
@@ -332,6 +334,9 @@ nnoremap <leader>= :wincmd =<CR>
 nnoremap <leader>default :source ~/sessions/default<CR>
 nnoremap <F8> :vertical wincmd f<CR>
 nnoremap <F3> :TagbarToggle<CR>
+nnoremap <leader>nav :set makeprg=~/Documents/BatchFiles/Commands/buildnav.cmd<CR>
+nnoremap <leader>build :set makeprg=~/Documents/BatchFiles/Commands/buildnpm.cmd<CR>
+nnoremap <leader>watch :set makeprg=~/Documents/BatchFiles/Commands/buildnpmwatch.cmd<CR>
 
 
 " TypeScript CTags
@@ -390,3 +395,4 @@ let g:OmniSharp_start_server = 0
 let g:OmniSharp_server_type  = 'roslyn'
 let g:OmniSharp_prefer_global_sln = 1
 let g:OmniSharp_timeout = 10
+
