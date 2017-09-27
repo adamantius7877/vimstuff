@@ -145,12 +145,14 @@ if has("autocmd")
     autocmd FileType TypeScript nnoremap gd :TsuDefinition<CR>
     autocmd FileType TypeScript nnoremap gb :TsuGoBack<CR>
     autocmd FileType TypeScript nnoremap <leader>import :TsuImport<CR>
+    autocmd FileType typescript vnoremap <C-k><C-d> :s/^/\/\//<CR>
+    autocmd FileType typescript vnoremap <C-k><C-u> :s/^\/\///<CR>
     autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(8,1)
 
     augroup omnisharp_commands
         autocmd!
 
-        autocmd FileType cs vnoremap <C-k><C-c> :s/^/\/\//<CR>
+        autocmd FileType cs vnoremap <C-k><C-d> :s/^/\/\//<CR>
         autocmd FileType cs vnoremap <C-k><C-u> :s/^\/\///<CR>
         "Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
         autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
@@ -188,8 +190,6 @@ if has("autocmd")
 
     augroup abbreviations
         autocmd!
-        autocmd FileType TypeScript vnoremap <C-k><C-c> :s/^/\/\//<CR>
-        autocmd FileType TypeScript vnoremap <C-k><C-u> :s/^\/\///<CR>
         autocmd FileType TypeScript iabbrev describe( describe(!cursor!', () => {<CR>});<Esc>gg=G:call search('!cursor!','b')<CR>cf!
         autocmd FileType TypeScript iabbrev it( it(!cursor!', () => {<CR>});<Esc>gg=G:call search('!cursor!','b')<CR>cf!
     augroup END
@@ -209,7 +209,7 @@ if has("autocmd")
     augroup END
 
     augroup vimstuff
-        autocmd FileType vim vnoremap <C-k><C-c> :s/^/\"\"/<CR>
+        autocmd FileType vim vnoremap <C-k><C-d> :s/^/\"\"/<CR>
         autocmd FileType vim vnoremap <C-k><C-u> :s/^\"\"//<CR>
     augroup END
 endif
