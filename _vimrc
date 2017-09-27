@@ -3,53 +3,35 @@ execute pathogen#infect()
 execute pathogen#helptags()
 filetype plugin on
 filetype plugin indent on
-" set term=xterm
 set encoding=utf-8
 if has("gui_running")
     hi Comment cterm=italic
     set guifont=Noto_Mono_for_Powerline:h10:cANSI:qDRAFT
 else
     let g:onedark_termcolors=16
+    set term=win32
 endif
 set omnifunc=syntaxcomplete#Complete
 set backspace=2
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set number
-set rnu
+set number rnu
 set hidden
 set switchbuf=useopen
-" Fold Options
 syntax on
 set foldmethod=syntax
 set background=dark
-"colorscheme deus
-"let g:airline_theme="dues"
-colorscheme onedark
-" colorscheme wombat256dave
-" colorscheme Base2Tone_SeaDark
-" colorscheme gotham
-" colorscheme greenvision
-" colorscheme srcery-drk
-" colorscheme vimbrains
-" colorscheme atom-dark-256
-" colorscheme mourning
-" colorscheme monokai
-" colorscheme sialoquent
-" colorscheme molokai
-" colorscheme smarties
-" colorscheme minimalist
-" colorscheme angr
-" colorscheme lyla
-nnoremap <SPACE> <NOP>
-let mapleader = "\<SPACE>"
 set splitbelow
 set splitright
+set dir=~/tmp
+colorscheme carbonized-dark
+nnoremap <SPACE> <NOP>
+let mapleader = "\<SPACE>"
 
 " Ale Configuration
 let g:ale_html_htmlhint_options = '--config %USERPROFILE%\vimfiles\.htmlhintrc'
-" let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_save = 1
 let g:ale_set_loclist=0
 let g:ale_set_quickfix=1
@@ -102,6 +84,7 @@ map <leader>cmd :e C:\Users\c.henderson1\Documents\BatchFiles\env.cmd<CR>
 " Edit ctags file
 map <leader>ctag :e C:\Users\c.henderson1\ctags.cnf<CR>
 nnoremap <F6> :AsyncRun -program=make<CR>
+nnoremap <leader>cal :Calendar<CR>
 
 
 " Set Fold Methods
@@ -142,10 +125,6 @@ let g:used_javascript_libs='jquery, angularjs, angular4'
 map <leader>ts :let NERDTreeIgnore = ['\.js']<CR>r
 map <leader>nf :let NERDTreeIgnore = ['']<CR>r
 
-inoremap <C-space> <C-x><C-o>
-inoremap <C-@> <C-space>
-
-map <C-k><C-d> =G=gg
 map <leader>> 10<C-w><S->>
 map <leader>< 10<C-w><S-<>
 map <leader>bs :b#<CR>
@@ -171,6 +150,8 @@ if has("autocmd")
     augroup omnisharp_commands
         autocmd!
 
+        autocmd FileType cs vnoremap <C-k><C-c> :s/^/\/\//<CR>
+        autocmd FileType cs vnoremap <C-k><C-u> :s/^\/\///<CR>
         "Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
         autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 
@@ -207,6 +188,8 @@ if has("autocmd")
 
     augroup abbreviations
         autocmd!
+        autocmd FileType TypeScript vnoremap <C-k><C-c> :s/^/\/\//<CR>
+        autocmd FileType TypeScript vnoremap <C-k><C-u> :s/^\/\///<CR>
         autocmd FileType TypeScript iabbrev describe( describe(!cursor!', () => {<CR>});<Esc>gg=G:call search('!cursor!','b')<CR>cf!
         autocmd FileType TypeScript iabbrev it( it(!cursor!', () => {<CR>});<Esc>gg=G:call search('!cursor!','b')<CR>cf!
     augroup END
@@ -223,6 +206,11 @@ if has("autocmd")
         autocmd BufNewFile *.component.spec.ts 0r C:\Users\c.henderson1\vimfiles\templates\skeleton.component.spec.ts
         autocmd BufNewFile *.service.ts 0r C:\Users\c.henderson1\vimfiles\templates\skeleton.service.ts
         autocmd BufNewFile *.service.spec.ts 0r C:\Users\c.henderson1\vimfiles\templates\skeleton.service.spec.ts
+    augroup END
+
+    augroup vimstuff
+        autocmd FileType vim vnoremap <C-k><C-c> :s/^/\"\"/<CR>
+        autocmd FileType vim vnoremap <C-k><C-u> :s/^\"\"//<CR>
     augroup END
 endif
 
@@ -335,6 +323,7 @@ nnoremap <leader>default :source ~/sessions/default<CR>
 nnoremap <F8> :vertical wincmd f<CR>
 nnoremap <F3> :TagbarToggle<CR>
 nnoremap <leader>nav :set makeprg=~/Documents/BatchFiles/Commands/buildnav.cmd<CR>
+nnoremap <leader>coms :set makeprg=~/Documents/BatchFiles/Commands/buildcoms.cmd<CR>
 nnoremap <leader>build :set makeprg=~/Documents/BatchFiles/Commands/buildnpm.cmd<CR>
 nnoremap <leader>watch :set makeprg=~/Documents/BatchFiles/Commands/buildnpmwatch.cmd<CR>
 
@@ -396,3 +385,5 @@ let g:OmniSharp_server_type  = 'roslyn'
 let g:OmniSharp_prefer_global_sln = 1
 let g:OmniSharp_timeout = 10
 
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
